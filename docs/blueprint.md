@@ -1,4 +1,4 @@
-# **App Name**: Alameda Lab
+# **App Name**: Alameda Learn
 
 ## Core Features:
 
