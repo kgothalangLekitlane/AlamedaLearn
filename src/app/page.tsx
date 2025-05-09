@@ -1,20 +1,20 @@
 
-import { mockCourses, mockDeadlines } from '@/lib/mockData';
-import CourseCard from '@/components/CourseCard';
+import { mockSubjects, mockDeadlines } from '@/lib/mockData'; // Renamed mockCourses to mockSubjects
+import SubjectCard from '@/components/SubjectCard'; // Renamed CourseCard to SubjectCard
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ListChecks, CalendarClock, BarChart3, BookCopy } from 'lucide-react'; // Added BookCopy
+import { ListChecks, CalendarClock, BarChart3, BookCopy } from 'lucide-react'; 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export default function DashboardPage() {
-  const ongoingCourses = mockCourses.filter(course => (course.progress ?? 0) < 100 && (course.progress ?? 0) > 0).slice(0, 3);
+  const ongoingSubjects = mockSubjects.filter(subject => (subject.progress ?? 0) < 100 && (subject.progress ?? 0) > 0).slice(0, 3); // Renamed ongoingCourses, mockSubjects, subject
   const upcomingDeadlines = mockDeadlines
     .filter(deadline => new Date(deadline.date) >= new Date())
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .slice(0, 5);
   
-  const overallProgress = mockCourses.length > 0 
-    ? mockCourses.reduce((acc, course) => acc + (course.progress ?? 0), 0) / mockCourses.length
+  const overallProgress = mockSubjects.length > 0 
+    ? mockSubjects.reduce((acc, subject) => acc + (subject.progress ?? 0), 0) / mockSubjects.length // Renamed mockSubjects, subject
     : 0;
 
   return (
@@ -27,13 +27,13 @@ export default function DashboardPage() {
       <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <Card className="shadow-md hover:shadow-lg transition-shadow">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Courses Enrolled</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Subjects Enrolled</CardTitle> {/* Renamed from Total Courses Enrolled */}
             <BookCopy className="h-5 w-5 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{mockCourses.length}</div>
+            <div className="text-2xl font-bold">{mockSubjects.length}</div> {/* Renamed from mockCourses */}
             <p className="text-xs text-muted-foreground">
-              Explore a wide range of subjects.
+              Explore a wide range of academic subjects. {/* Updated text */}
             </p>
           </CardContent>
         </Card>
@@ -45,7 +45,7 @@ export default function DashboardPage() {
           <CardContent>
             <div className="text-2xl font-bold">{overallProgress.toFixed(0)}%</div>
             <p className="text-xs text-muted-foreground">
-              Across all your courses.
+              Across all your subjects. {/* Renamed from courses */}
             </p>
           </CardContent>
         </Card>
@@ -63,17 +63,17 @@ export default function DashboardPage() {
         </Card>
       </section>
       
-      {ongoingCourses.length > 0 && (
+      {ongoingSubjects.length > 0 && ( // Renamed from ongoingCourses
         <section>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-2xl font-semibold tracking-tight">Continue Learning</h2>
             <Button variant="outline" asChild>
-              <Link href="/courses">View All Courses</Link>
+              <Link href="/subjects">View All Subjects</Link>
             </Button>
           </div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {ongoingCourses.map(course => (
-              <CourseCard key={course.id} course={course} />
+            {ongoingSubjects.map(subject => ( // Renamed from ongoingCourses, course
+              <SubjectCard key={subject.id} subject={subject} /> // Renamed from CourseCard, course prop
             ))}
           </div>
         </section>
@@ -86,9 +86,9 @@ export default function DashboardPage() {
             <CardContent className="p-6">
               <ul className="space-y-3">
                 {upcomingDeadlines.map(deadline => (
-                  <li key={deadline.courseName + deadline.date} className="flex items-center justify-between p-3 bg-muted/50 rounded-md">
+                  <li key={deadline.subjectName + deadline.date} className="flex items-center justify-between p-3 bg-muted/50 rounded-md"> {/* Renamed from courseName */}
                     <div>
-                      <p className="font-medium">{deadline.courseName}</p>
+                      <p className="font-medium">{deadline.subjectName}</p> {/* Renamed from courseName */}
                       <p className="text-sm text-muted-foreground">
                         Due: {new Date(deadline.date).toLocaleDateString('en-ZA', { year: 'numeric', month: 'long', day: 'numeric' })}
                       </p>
@@ -116,4 +116,3 @@ export default function DashboardPage() {
     </div>
   );
 }
-

@@ -1,4 +1,5 @@
-import { getModuleById, getCourseById } from '@/lib/mockData';
+
+import { getModuleById, getSubjectById } from '@/lib/mockData'; // Renamed getCourseById to getSubjectById
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -8,7 +9,7 @@ import type { Lesson } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
 
 interface ModulePageParams {
-  params: { courseId: string; moduleId: string };
+  params: { subjectId: string; moduleId: string }; // Renamed courseId to subjectId
 }
 
 const getLessonIcon = (contentType: Lesson['contentType']) => {
@@ -22,15 +23,15 @@ const getLessonIcon = (contentType: Lesson['contentType']) => {
 };
 
 export default function ModulePage({ params }: ModulePageParams) {
-  const course = getCourseById(params.courseId);
-  const module = getModuleById(params.courseId, params.moduleId);
+  const subject = getSubjectById(params.subjectId); // Renamed course to subject, getCourseById to getSubjectById
+  const module = getModuleById(params.subjectId, params.moduleId); // Renamed params.courseId to params.subjectId
 
-  if (!course || !module) {
+  if (!subject || !module) { // Renamed course to subject
     return (
       <div className="container mx-auto py-10 text-center">
         <h1 className="text-2xl font-bold">Module not found</h1>
-        <Link href={`/courses/${params.courseId}`}>
-          <Button variant="link" className="mt-4">Go back to course</Button>
+        <Link href={`/subjects/${params.subjectId}`}> {/* Renamed /courses to /subjects */}
+          <Button variant="link" className="mt-4">Go back to subject</Button> {/* Renamed course to subject */}
         </Link>
       </div>
     );
@@ -40,9 +41,9 @@ export default function ModulePage({ params }: ModulePageParams) {
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <Link href={`/courses/${params.courseId}`} className="inline-flex items-center text-sm text-primary hover:underline mb-1">
+          <Link href={`/subjects/${params.subjectId}`} className="inline-flex items-center text-sm text-primary hover:underline mb-1"> {/* Renamed /courses to /subjects */}
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to {course.title}
+            Back to {subject.title} {/* Renamed course to subject */}
           </Link>
           <h1 className="text-3xl font-bold tracking-tight text-primary">{module.title}</h1>
           <p className="text-muted-foreground">{module.description}</p>
@@ -83,7 +84,7 @@ export default function ModulePage({ params }: ModulePageParams) {
                     </div>
                   </div>
                   <Button asChild variant="ghost" size="sm" className="text-primary hover:bg-primary/10">
-                    <Link href={`/courses/${params.courseId}/modules/${params.moduleId}/lessons/${lesson.id}`}>
+                    <Link href={`/subjects/${params.subjectId}/modules/${params.moduleId}/lessons/${lesson.id}`}> {/* Renamed /courses to /subjects */}
                       Start Lesson
                     </Link>
                   </Button>

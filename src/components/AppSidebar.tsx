@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -11,17 +10,19 @@ import {
 } from '@/components/ui/sidebar';
 import SidebarNavContent from '@/components/SidebarNavContent';
 import type { NavItem } from '@/components/SidebarNavContent';
-import { useAuth } from '@/contexts/AuthContext'; // New
-import { Button } from '@/components/ui/button'; // New
-import { Skeleton } from '@/components/ui/skeleton'; // For loading state
+import { useAuth } from '@/contexts/AuthContext';
+import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 
 
 interface AppSidebarProps {
-  baseNavItems: NavItem[]; // Changed from navItems
+  baseNavItems?: NavItem[];
+  navItems?: NavItem[]; // For backward compatibility or potential SSR issues
 }
 
-export default function AppSidebar({ baseNavItems }: AppSidebarProps) {
-  const { isLoggedIn, logout, isLoading, user } = useAuth(); // New
+export default function AppSidebar({ baseNavItems: propsBaseNavItems, navItems: propsNavItems }: AppSidebarProps) {
+  const { isLoggedIn, logout, isLoading, user } = useAuth();
+  const actualBaseNavItems = propsBaseNavItems || propsNavItems || [];
 
   return (
     <Sidebar className="border-r hidden md:flex flex-col bg-card shadow-md">
@@ -32,7 +33,8 @@ export default function AppSidebar({ baseNavItems }: AppSidebarProps) {
         </Link>
       </SidebarHeader>
       <SidebarContent className="flex-grow">
-        <SidebarNavContent baseNavItems={baseNavItems} />
+        {/* Pass resolved nav items to SidebarNavContent */}
+        <SidebarNavContent baseNavItems={actualBaseNavItems} />
       </SidebarContent>
       <SidebarFooter className="p-4 border-t space-y-2">
         {isLoading ? (
@@ -48,4 +50,3 @@ export default function AppSidebar({ baseNavItems }: AppSidebarProps) {
     </Sidebar>
   );
 }
-

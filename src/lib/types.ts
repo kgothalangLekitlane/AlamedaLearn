@@ -16,10 +16,10 @@ export interface Module {
   progress?: number; // Percentage, 0-100
 }
 
-export interface Course {
+export interface Subject { // Renamed from Course
   id: string;
   title: string;
-  subject: string;
+  subject: string; // Academic subject/discipline, e.g., "Mathematics"
   grade: string; // e.g., "Grade 10", "Grade 11", "Grade 12"
   description: string;
   imageUrl: string;
@@ -46,13 +46,13 @@ export interface User {
   isTutor: boolean;
   bio?: string;
   profilePictureUrl?: string;
-  country?: string; // New
-  province?: string; // New
-  city?: string; // New
+  country?: string; 
+  province?: string; 
+  city?: string; 
 }
 
 export interface Deadline {
-  courseName: string;
+  subjectName: string; // Renamed from courseName
   date: string; // YYYY-MM-DD
 }
 

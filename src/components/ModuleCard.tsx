@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,10 +8,10 @@ import { Layers, ArrowRight } from 'lucide-react';
 
 interface ModuleCardProps {
   module: Module;
-  courseId: string;
+  subjectId: string; // Renamed from courseId
 }
 
-export default function ModuleCard({ module, courseId }: ModuleCardProps) {
+export default function ModuleCard({ module, subjectId }: ModuleCardProps) { // Renamed courseId to subjectId
   return (
     <Card className="overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg">
       <CardHeader>
@@ -38,7 +39,7 @@ export default function ModuleCard({ module, courseId }: ModuleCardProps) {
       </CardContent>
       <CardFooter>
         <Button asChild className="w-full transition-transform duration-200 hover:scale-105">
-          <Link href={`/courses/${courseId}/modules/${module.id}`}>
+          <Link href={`/subjects/${subjectId}/modules/${module.id}`}> {/* Renamed /courses to /subjects, courseId to subjectId */}
             Start Module
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>

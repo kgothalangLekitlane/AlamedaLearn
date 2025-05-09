@@ -1,3 +1,4 @@
+
 // use server'
 
 /**
@@ -12,10 +13,10 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GenerateStudyScheduleInputSchema = z.object({
-  courseDeadlines: z
+  subjectDeadlines: z // Renamed from courseDeadlines
     .string()
     .describe(
-      'A list of course deadlines in the format: Course Name: YYYY-MM-DD, Course Name: YYYY-MM-DD.'
+      'A list of subject deadlines in the format: Subject Name: YYYY-MM-DD, Subject Name: YYYY-MM-DD.' // Updated description
     ),
   studyTimeAvailability: z
     .string()
@@ -51,12 +52,12 @@ const prompt = ai.definePrompt({
   output: {schema: GenerateStudyScheduleOutputSchema},
   prompt: `You are a study schedule expert. Create a personalized study schedule for the user based on the following information:
 
-Course Deadlines: {{{courseDeadlines}}}
+Subject Deadlines: {{{subjectDeadlines}}}
 Study Time Availability: {{{studyTimeAvailability}}}
 Preferred Difficulty Level: {{{preferredDifficultyLevel}}}
 
-Consider the course deadlines, study time availability, and preferred difficulty level to create an optimized study schedule. The study schedule should be clear, concise, and easy to follow.
-`,
+Consider the subject deadlines, study time availability, and preferred difficulty level to create an optimized study schedule. The study schedule should be clear, concise, and easy to follow.
+`, // Renamed Course Deadlines to Subject Deadlines and courseDeadlines to subjectDeadlines
 });
 
 const generateStudyScheduleFlow = ai.defineFlow(
@@ -70,4 +71,3 @@ const generateStudyScheduleFlow = ai.defineFlow(
     return output!;
   }
 );
-

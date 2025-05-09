@@ -42,18 +42,18 @@ export default function StudyPlannerForm() {
         <form action={formAction}>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="courseDeadlines" className="text-base">Course Deadlines</Label>
+              <Label htmlFor="subjectDeadlines" className="text-base">Subject Deadlines</Label> {/* Renamed from courseDeadlines */}
               <Textarea
-                id="courseDeadlines"
-                name="courseDeadlines"
-                placeholder="e.g., Mathematics: 2024-11-15, Physical Sciences: 2024-10-30"
+                id="subjectDeadlines" // Renamed from courseDeadlines
+                name="subjectDeadlines" // Renamed from courseDeadlines
+                placeholder="e.g., Mathematics: 2024-11-15, Physical Sciences: 2024-10-30" // Example can remain similar
                 rows={4}
                 required
-                defaultValue={state.fields?.courseDeadlines}
+                defaultValue={state.fields?.subjectDeadlines} // Renamed from courseDeadlines
                 className="text-base"
               />
               <p className="text-xs text-muted-foreground">
-                List course names and their deadlines (YYYY-MM-DD), one per line or comma-separated.
+                List subject names and their deadlines (YYYY-MM-DD), one per line or comma-separated. {/* Updated text */}
               </p>
             </div>
 
@@ -133,4 +133,3 @@ export default function StudyPlannerForm() {
     </div>
   );
 }
-

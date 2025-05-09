@@ -11,7 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { UserCircle, Mail, Briefcase, Edit3, Loader2, MapPin } from 'lucide-react'; // Added MapPin
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import VideoUploadForm from '@/components/VideoUploadForm'; 
+import VideoUploadForm from './VideoUploadForm'; 
 
 export default function ProfilePage() {
   const { user, isLoggedIn, isLoading, logout, login } = useAuth(); // Added login to update context

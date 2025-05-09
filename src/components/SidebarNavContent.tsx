@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
-import { LayoutDashboard, BookCopy, BrainCircuit, CreditCard, Settings, UserCircle, ClipboardList } from 'lucide-react'; // Added UserCircle, ClipboardList
-import { useAuth } from '@/contexts/AuthContext'; // New
+import { LayoutDashboard, BookCopy, BrainCircuit, CreditCard, Settings, UserCircle, ClipboardList } from 'lucide-react'; 
+import { useAuth } from '@/contexts/AuthContext'; 
 
 export interface NavItem {
   href: string;
@@ -26,20 +26,29 @@ const iconComponents: { [key: string]: LucideIcon } = {
   BrainCircuit,
   CreditCard,
   Settings,
-  UserCircle, // Added UserCircle
-  ClipboardList, // Added ClipboardList
+  UserCircle, 
+  ClipboardList, 
 };
 
 export default function SidebarNavContent({ baseNavItems, isMobile = false, onLinkClick }: SidebarNavContentProps) {
   const pathname = usePathname();
-  const { isLoggedIn, user } = useAuth(); // New
+  const { isLoggedIn, user } = useAuth(); 
 
   let navItems = [...baseNavItems]; // Start with base items
 
+  // Update "Courses" to "Subjects" if it exists in baseNavItems
+  navItems = navItems.map(item => 
+    item.title === 'Courses' ? { ...item, title: 'Subjects', href: '/subjects' } : item
+  );
+  
+  // Add profile link if logged in
   if (isLoggedIn && user) {
-    navItems.push({ href: '/profile', title: 'My Profile', icon: 'UserCircle' });
+    // Ensure profile link is not duplicated if already present from baseNavItems
+    if (!navItems.find(item => item.href === '/profile')) {
+      navItems.push({ href: '/profile', title: 'My Profile', icon: 'UserCircle' });
+    }
   }
-  // Potentially add other dynamic items here later
+
 
   return (
     <nav className={cn('flex flex-col gap-2 px-4 py-2', isMobile ? '' : 'mt-4')}>

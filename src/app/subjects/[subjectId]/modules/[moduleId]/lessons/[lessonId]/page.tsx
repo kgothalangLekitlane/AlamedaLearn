@@ -1,4 +1,5 @@
-import { getLessonById, getModuleById, getCourseById } from '@/lib/mockData';
+
+import { getLessonById, getModuleById, getSubjectById } from '@/lib/mockData'; // Renamed getCourseById to getSubjectById
 import LessonDisplay from '@/components/LessonDisplay';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -15,22 +16,22 @@ import {
 
 interface LessonPageParams {
   params: {
-    courseId: string;
+    subjectId: string; // Renamed from courseId
     moduleId: string;
     lessonId: string;
   };
 }
 
 export default function LessonPage({ params }: LessonPageParams) {
-  const course = getCourseById(params.courseId);
-  const module = getModuleById(params.courseId, params.moduleId);
-  const lesson = getLessonById(params.courseId, params.moduleId, params.lessonId);
+  const subject = getSubjectById(params.subjectId); // Renamed course to subject, getCourseById to getSubjectById
+  const module = getModuleById(params.subjectId, params.moduleId); // Renamed params.courseId to params.subjectId
+  const lesson = getLessonById(params.subjectId, params.moduleId, params.lessonId); // Renamed params.courseId to params.subjectId
 
-  if (!course || !module || !lesson) {
+  if (!subject || !module || !lesson) { // Renamed course to subject
     return (
       <div className="container mx-auto py-10 text-center">
         <h1 className="text-2xl font-bold">Lesson not found</h1>
-        <Link href={`/courses/${params.courseId}/modules/${params.moduleId}`}>
+        <Link href={`/subjects/${params.subjectId}/modules/${params.moduleId}`}> {/* Renamed /courses to /subjects */}
           <Button variant="link" className="mt-4">Go back to module</Button>
         </Link>
       </div>
@@ -47,19 +48,19 @@ export default function LessonPage({ params }: LessonPageParams) {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href="/courses">Courses</Link>
+              <Link href="/subjects">Subjects</Link> {/* Renamed from Courses */}
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href={`/courses/${course.id}`}>{course.title}</Link>
+              <Link href={`/subjects/${subject.id}`}>{subject.title}</Link> {/* Renamed /courses to /subjects, course to subject */}
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
-              <Link href={`/courses/${course.id}/modules/${module.id}`}>{module.title}</Link>
+              <Link href={`/subjects/${subject.id}/modules/${module.id}`}>{module.title}</Link> {/* Renamed /courses to /subjects, course to subject */}
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -74,7 +75,7 @@ export default function LessonPage({ params }: LessonPageParams) {
       <div className="flex justify-between items-center mt-8">
         {prevLesson ? (
           <Button asChild variant="outline">
-            <Link href={`/courses/${params.courseId}/modules/${params.moduleId}/lessons/${prevLesson.id}`}>
+            <Link href={`/subjects/${params.subjectId}/modules/${params.moduleId}/lessons/${prevLesson.id}`}> {/* Renamed /courses to /subjects */}
               <ChevronLeft className="mr-2 h-4 w-4" />
               Previous: {prevLesson.title}
             </Link>
@@ -83,7 +84,7 @@ export default function LessonPage({ params }: LessonPageParams) {
         
         {nextLesson ? (
           <Button asChild>
-            <Link href={`/courses/${params.courseId}/modules/${params.moduleId}/lessons/${nextLesson.id}`}>
+            <Link href={`/subjects/${params.subjectId}/modules/${params.moduleId}/lessons/${nextLesson.id}`}> {/* Renamed /courses to /subjects */}
               Next: {nextLesson.title}
               <ChevronRight className="ml-2 h-4 w-4" />
             </Link>
@@ -95,7 +96,7 @@ export default function LessonPage({ params }: LessonPageParams) {
         )}
       </div>
        <Button asChild variant="link" className="mt-6">
-         <Link href={`/courses/${params.courseId}/modules/${params.moduleId}`}>
+         <Link href={`/subjects/${params.subjectId}/modules/${params.moduleId}`}> {/* Renamed /courses to /subjects */}
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Lessons in Module
          </Link>
       </Button>

@@ -1,10 +1,11 @@
+
 'use server';
 
 import { generateStudySchedule, type GenerateStudyScheduleInput, type GenerateStudyScheduleOutput } from '@/ai/flows/generate-study-schedule';
 import { z } from 'zod';
 
 const StudyPlannerSchema = z.object({
-  courseDeadlines: z.string().min(1, "Course deadlines are required."),
+  subjectDeadlines: z.string().min(1, "Subject deadlines are required."), // Renamed from courseDeadlines
   studyTimeAvailability: z.string().min(1, "Study time availability is required."),
   preferredDifficultyLevel: z.enum(['easy', 'medium', 'hard']),
 });
@@ -21,7 +22,7 @@ export async function createStudyScheduleAction(
   formData: FormData
 ): Promise<StudyPlannerFormState> {
   const validatedFields = StudyPlannerSchema.safeParse({
-    courseDeadlines: formData.get('courseDeadlines'),
+    subjectDeadlines: formData.get('subjectDeadlines'), // Renamed from courseDeadlines
     studyTimeAvailability: formData.get('studyTimeAvailability'),
     preferredDifficultyLevel: formData.get('preferredDifficultyLevel'),
   });

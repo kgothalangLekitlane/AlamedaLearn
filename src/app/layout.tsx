@@ -7,8 +7,8 @@ import AppHeader from '@/components/AppHeader';
 import AppSidebar from '@/components/AppSidebar';
 import type { NavItem } from '@/components/SidebarNavContent';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import { AuthProvider } from '@/contexts/AuthContext'; // New
-import { ThemeProvider } from '@/components/ThemeProvider'; // New
+import { AuthProvider } from '@/contexts/AuthContext'; 
+import { ThemeProvider } from '@/components/ThemeProvider'; 
 
 export const metadata: Metadata = {
   title: 'AlamedaLearn',
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 // These are now base nav items, auth-specific items will be added dynamically
 const baseNavItems: NavItem[] = [
   { href: '/', title: 'Dashboard', icon: 'LayoutDashboard' },
-  { href: '/courses', title: 'Courses', icon: 'BookCopy' },
+  { href: '/subjects', title: 'Subjects', icon: 'BookCopy' }, // Renamed from Courses
   { href: '/study-planner', title: 'AI Study Planner', icon: 'BrainCircuit' },
-  { href: '/surveys', title: 'Surveys', icon: 'ClipboardList' }, // Added Surveys
+  { href: '/surveys', title: 'Surveys', icon: 'ClipboardList' }, 
   { href: '/subscription', title: 'Subscription', icon: 'CreditCard' },
 ];
 
@@ -38,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider> {/* New Wrapper */}
+          <AuthProvider> 
             <SidebarProvider>
               <div className="flex min-h-screen w-full">
                 <AppSidebar baseNavItems={baseNavItems} />
@@ -50,11 +50,10 @@ export default function RootLayout({
                 </div>
               </div>
             </SidebarProvider>
-          </AuthProvider> {/* New Wrapper */}
+          </AuthProvider> 
           <Toaster />
         </ThemeProvider>
       </body>
     </html>
   );
 }
-

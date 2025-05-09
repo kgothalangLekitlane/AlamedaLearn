@@ -12,7 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2, CheckCircle, AlertCircle, UploadCloud } from 'lucide-react';
-import { mockCourses } from '@/lib/mockData'; // To get subject and grade lists
+import { mockSubjects } from '@/lib/mockData'; // Renamed from mockCourses
 import { useToast } from '@/hooks/use-toast';
 
 
@@ -37,8 +37,8 @@ export default function VideoUploadForm() {
   const { toast } = useToast();
   const [fileName, setFileName] = useState<string | null>(null);
 
-  const uniqueSubjects = Array.from(new Set(mockCourses.map(course => course.subject))).sort();
-  const uniqueGrades = Array.from(new Set(mockCourses.map(course => course.grade))).sort();
+  const uniqueSubjects = Array.from(new Set(mockSubjects.map(subject => subject.subject))).sort(); // Renamed mockCourses to mockSubjects
+  const uniqueGrades = Array.from(new Set(mockSubjects.map(subject => subject.grade))).sort(); // Renamed mockCourses to mockSubjects
   
   useEffect(() => {
     if (state.message) {
@@ -85,10 +85,10 @@ export default function VideoUploadForm() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1">
-              <Label htmlFor="subject">Subject</Label>
+              <Label htmlFor="subject">Academic Subject</Label> {/* Clarified label */}
               <Select name="subject" required>
                 <SelectTrigger id="subject">
-                  <SelectValue placeholder="Select subject" />
+                  <SelectValue placeholder="Select academic subject" />
                 </SelectTrigger>
                 <SelectContent>
                   {uniqueSubjects.map(subject => (
@@ -149,4 +149,3 @@ export default function VideoUploadForm() {
     </Card>
   );
 }
-

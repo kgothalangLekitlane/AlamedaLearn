@@ -1,10 +1,10 @@
 
-import type { Course, Deadline, Survey, SurveyQuestion } from '@/lib/types';
+import type { Subject, Deadline, Survey, SurveyQuestion } from '@/lib/types'; // Renamed Course to Subject
 
 const sampleVideoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 const samplePdfUrl = '/resources/sample-document.pdf'; // Generic placeholder for PDF resources
 
-export const mockCourses: Course[] = [
+export const mockSubjects: Subject[] = [ // Renamed from mockCourses
   {
     id: 'math-grade10',
     title: 'Mathematics Grade 10',
@@ -331,29 +331,29 @@ export const mockCourses: Course[] = [
   },
 ];
 
-export const mockDeadlines: Deadline[] = mockCourses
-  .filter(course => course.deadline)
-  .map(course => ({
-    courseName: course.title,
-    date: course.deadline!,
+export const mockDeadlines: Deadline[] = mockSubjects // Renamed from mockCourses
+  .filter(subject => subject.deadline) // Renamed from course
+  .map(subject => ({ // Renamed from course
+    subjectName: subject.title, // Renamed from courseName
+    date: subject.deadline!,
   }));
 
-export const getCourseById = (id: string): Course | undefined => mockCourses.find(course => course.id === id);
+export const getSubjectById = (id: string): Subject | undefined => mockSubjects.find(subject => subject.id === id); // Renamed from getCourseById, mockCourses, course
 
-export const getModuleById = (courseId: string, moduleId: string) => {
-  const course = getCourseById(courseId);
-  return course?.modules.find(module => module.id === moduleId);
+export const getModuleById = (subjectId: string, moduleId: string) => { // Renamed from courseId
+  const subject = getSubjectById(subjectId); // Renamed from course, getCourseById
+  return subject?.modules.find(module => module.id === moduleId);
 }
 
-export const getLessonById = (courseId: string, moduleId: string, lessonId: string) => {
-  const module = getModuleById(courseId, moduleId);
+export const getLessonById = (subjectId: string, moduleId: string, lessonId: string) => { // Renamed from courseId
+  const module = getModuleById(subjectId, moduleId); // Renamed from courseId
   return module?.lessons.find(lesson => lesson.id === lessonId);
 }
 
-// Add data-ai-hint for course images
-mockCourses.forEach(course => {
+// Add data-ai-hint for subject images
+mockSubjects.forEach(subject => { // Renamed from mockCourses, course
   let hint = "education learning"; // Default hint
-  const subjectLower = course.subject.toLowerCase();
+  const subjectLower = subject.subject.toLowerCase(); // subject.subject refers to academic discipline
 
   if (subjectLower.includes('math')) {
     hint = "mathematics textbook";
@@ -379,8 +379,8 @@ mockCourses.forEach(course => {
     hint = "language study";
   }
   // Ensure existing data-ai-hint is not overwritten if present, and correctly format
-  const baseUrl = course.imageUrl.includes('"') ? course.imageUrl.split('"')[0] : course.imageUrl;
-  course.imageUrl = `${baseUrl}" data-ai-hint="${hint}`;
+  const baseUrl = subject.imageUrl.includes('"') ? subject.imageUrl.split('"')[0] : subject.imageUrl; // Renamed from course
+  subject.imageUrl = `${baseUrl}" data-ai-hint="${hint}`; // Renamed from course
 });
 
 
@@ -404,8 +404,8 @@ export const mockSurveys: Survey[] = [
         isRequired: true,
       },
       {
-        id: 'q2-course-content',
-        text: 'How satisfied are you with the quality and relevance of the course content?',
+        id: 'q2-subject-content', // Changed from course-content
+        text: 'How satisfied are you with the quality and relevance of the subject content?', // Changed from course content
         type: 'rating',
         minRating: 1,
         maxRating: 5,
@@ -419,7 +419,7 @@ export const mockSurveys: Survey[] = [
         isRequired: false,
         options: [
           { id: 'feat1', value: 'ai_study_planner', label: 'AI Study Planner' },
-          { id: 'feat2', value: 'course_videos', label: 'Course Videos' },
+          { id: 'feat2', value: 'subject_videos', label: 'Subject Videos' }, // Changed from course_videos
           { id: 'feat3', value: 'quizzes', label: 'Quizzes' },
           { id: 'feat4', value: 'progress_tracking', label: 'Progress Tracking' },
           { id: 'feat5', value: 'downloadable_resources', label: 'Downloadable Resources' },
@@ -452,16 +452,16 @@ export const mockSurveys: Survey[] = [
     ],
   },
   {
-    id: 'math-course-feedback',
-    title: 'Mathematics Course Feedback',
-    description: 'Please provide feedback specific to your experience with our Mathematics courses.',
+    id: 'math-subject-feedback', // Changed from math-course-feedback
+    title: 'Mathematics Subject Feedback', // Changed from Mathematics Course Feedback
+    description: 'Please provide feedback specific to your experience with our Mathematics subjects.', // Changed from Mathematics courses
     isActive: true,
     createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
     updatedAt: new Date().toISOString(),
     questions: [
       {
         id: 'math-q1-difficulty',
-        text: 'How would you rate the difficulty level of the Mathematics course content?',
+        text: 'How would you rate the difficulty level of the Mathematics subject content?', // Changed from Mathematics course content
         type: 'single-choice',
         isRequired: true,
         options: [
@@ -481,7 +481,7 @@ export const mockSurveys: Survey[] = [
       },
       {
         id: 'math-q3-suggestions',
-        text: 'Do you have any specific suggestions for improving the Mathematics courses?',
+        text: 'Do you have any specific suggestions for improving the Mathematics subjects?', // Changed from Mathematics courses
         type: 'text',
         isRequired: false,
       },
