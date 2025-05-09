@@ -52,3 +52,49 @@ export interface Deadline {
   courseName: string;
   date: string; // YYYY-MM-DD
 }
+
+// Survey Types
+export interface SurveyQuestionOption {
+  id: string; // e.g. 'option1'
+  value: string; // e.g. 'strongly_agree'
+  label: string; // e.g. 'Strongly Agree'
+}
+
+export interface SurveyQuestion {
+  id: string; // e.g., 'q1'
+  text: string;
+  type: 'multiple-choice' | 'single-choice' | 'text' | 'rating' | 'yes-no';
+  options?: SurveyQuestionOption[]; // For multiple-choice, single-choice
+  minRating?: number; // For rating (e.g., 1)
+  maxRating?: number; // For rating (e.g., 5)
+  ratingLabels?: { min: string; max: string }; // Optional labels for min/max rating
+  isRequired?: boolean;
+}
+
+export interface Survey {
+  id: string;
+  title: string;
+  description: string;
+  questions: SurveyQuestion[];
+  isActive: boolean; // To control if survey is open for responses
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+}
+
+export interface SurveyAnswer {
+  questionId: string;
+  // Value can be a single string (text, single-choice, rating, yes-no)
+  // or an array of strings (multiple-choice)
+  value: string | string[] | number;
+}
+
+export interface SurveyResponseInput {
+  surveyId: string;
+  answers: SurveyAnswer[];
+  userId?: string; // Optional: if the user is logged in
+}
+
+export interface SurveyResponse extends SurveyResponseInput {
+  id: string; // Unique ID for the response
+  submittedAt: string; // ISO date string
+}

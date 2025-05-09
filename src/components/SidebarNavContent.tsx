@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
-import { LayoutDashboard, BookCopy, BrainCircuit, CreditCard, Settings, UserCircle } from 'lucide-react'; // Added UserCircle
+import { LayoutDashboard, BookCopy, BrainCircuit, CreditCard, Settings, UserCircle, ClipboardList } from 'lucide-react'; // Added UserCircle, ClipboardList
 import { useAuth } from '@/contexts/AuthContext'; // New
 
 export interface NavItem {
@@ -27,6 +27,7 @@ const iconComponents: { [key: string]: LucideIcon } = {
   CreditCard,
   Settings,
   UserCircle, // Added UserCircle
+  ClipboardList, // Added ClipboardList
 };
 
 export default function SidebarNavContent({ baseNavItems, isMobile = false, onLinkClick }: SidebarNavContentProps) {

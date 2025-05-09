@@ -1,5 +1,5 @@
 
-import type { Course, Deadline } from '@/lib/types';
+import type { Course, Deadline, Survey, SurveyQuestion } from '@/lib/types';
 
 const sampleVideoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
 const samplePdfUrl = '/resources/sample-document.pdf'; // Generic placeholder for PDF resources
@@ -382,3 +382,131 @@ mockCourses.forEach(course => {
   const baseUrl = course.imageUrl.includes('"') ? course.imageUrl.split('"')[0] : course.imageUrl;
   course.imageUrl = `${baseUrl}" data-ai-hint="${hint}`;
 });
+
+
+// Mock Survey Data
+export const mockSurveys: Survey[] = [
+  {
+    id: 'platform-feedback-survey',
+    title: 'Platform Feedback Survey',
+    description: 'Help us improve Alameda Lab by sharing your experience with our platform.',
+    isActive: true,
+    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
+    updatedAt: new Date().toISOString(),
+    questions: [
+      {
+        id: 'q1-ease-of-use',
+        text: 'How easy is it to navigate and use the Alameda Lab platform?',
+        type: 'rating',
+        minRating: 1,
+        maxRating: 5,
+        ratingLabels: { min: 'Very Difficult', max: 'Very Easy' },
+        isRequired: true,
+      },
+      {
+        id: 'q2-course-content',
+        text: 'How satisfied are you with the quality and relevance of the course content?',
+        type: 'rating',
+        minRating: 1,
+        maxRating: 5,
+        ratingLabels: { min: 'Very Dissatisfied', max: 'Very Satisfied' },
+        isRequired: true,
+      },
+      {
+        id: 'q3-features',
+        text: 'Which features do you find most useful? (Select all that apply)',
+        type: 'multiple-choice',
+        isRequired: false,
+        options: [
+          { id: 'feat1', value: 'ai_study_planner', label: 'AI Study Planner' },
+          { id: 'feat2', value: 'course_videos', label: 'Course Videos' },
+          { id: 'feat3', value: 'quizzes', label: 'Quizzes' },
+          { id: 'feat4', value: 'progress_tracking', label: 'Progress Tracking' },
+          { id: 'feat5', value: 'downloadable_resources', label: 'Downloadable Resources' },
+        ],
+      },
+      {
+        id: 'q4-improvements',
+        text: 'What improvements or new features would you like to see on Alameda Lab?',
+        type: 'text',
+        isRequired: false,
+      },
+      {
+        id: 'q5-recommend',
+        text: 'Would you recommend Alameda Lab to a friend or colleague?',
+        type: 'yes-no',
+        isRequired: true,
+      },
+      {
+        id: 'q6-primary-device',
+        text: 'What is your primary device for accessing Alameda Lab?',
+        type: 'single-choice',
+        isRequired: true,
+        options: [
+            {id: 'dev1', value: 'desktop', label: 'Desktop Computer'},
+            {id: 'dev2', value: 'laptop', label: 'Laptop Computer'},
+            {id: 'dev3', value: 'tablet', label: 'Tablet'},
+            {id: 'dev4', value: 'smartphone', label: 'Smartphone'},
+        ]
+      }
+    ],
+  },
+  {
+    id: 'math-course-feedback',
+    title: 'Mathematics Course Feedback',
+    description: 'Please provide feedback specific to your experience with our Mathematics courses.',
+    isActive: true,
+    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(), // 2 days ago
+    updatedAt: new Date().toISOString(),
+    questions: [
+      {
+        id: 'math-q1-difficulty',
+        text: 'How would you rate the difficulty level of the Mathematics course content?',
+        type: 'single-choice',
+        isRequired: true,
+        options: [
+          { id: 'diff1', value: 'too_easy', label: 'Too Easy' },
+          { id: 'diff2', value: 'just_right', label: 'Just Right' },
+          { id: 'diff3', value: 'too_difficult', label: 'Too Difficult' },
+        ],
+      },
+      {
+        id: 'math-q2-video-lessons',
+        text: 'How helpful are the video lessons for understanding mathematical concepts?',
+        type: 'rating',
+        minRating: 1,
+        maxRating: 5,
+        ratingLabels: { min: 'Not Helpful', max: 'Very Helpful' },
+        isRequired: true,
+      },
+      {
+        id: 'math-q3-suggestions',
+        text: 'Do you have any specific suggestions for improving the Mathematics courses?',
+        type: 'text',
+        isRequired: false,
+      },
+    ],
+  },
+  {
+    id: 'inactive-survey-example',
+    title: 'Past Event Feedback (Closed)',
+    description: 'This survey is no longer active.',
+    isActive: false,
+    createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days ago
+    updatedAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(), // 20 days ago
+    questions: [
+       {
+        id: 'past-q1',
+        text: 'This is a question from a past, inactive survey.',
+        type: 'text',
+        isRequired: false,
+      },
+    ]
+  }
+];
+
+export const getAllSurveys = (): Survey[] => mockSurveys;
+
+export const getActiveSurveys = (): Survey[] => mockSurveys.filter(survey => survey.isActive);
+
+export const getSurveyById = (id: string): Survey | undefined => mockSurveys.find(survey => survey.id === id);

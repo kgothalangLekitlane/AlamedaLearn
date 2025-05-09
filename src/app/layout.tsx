@@ -19,6 +19,7 @@ const baseNavItems: NavItem[] = [
   { href: '/', title: 'Dashboard', icon: 'LayoutDashboard' },
   { href: '/courses', title: 'Courses', icon: 'BookCopy' },
   { href: '/study-planner', title: 'AI Study Planner', icon: 'BrainCircuit' },
+  { href: '/surveys', title: 'Surveys', icon: 'ClipboardList' }, // Added Surveys
   { href: '/subscription', title: 'Subscription', icon: 'CreditCard' },
 ];
 
