@@ -69,8 +69,8 @@ export async function uploadVideoAction(
   // Simulate API call / storage
   await new Promise(resolve => setTimeout(resolve, 1500));
 
-  // In a real app, you would upload the file to storage (e.g., Firebase Storage)
-  // and save the metadata (and storage URL) to your database.
+  // In a real app, you would upload the file to a file storage service
+  // and save the metadata (including the storage URL) to your database (e.g., MongoDB).
   // For example, linking it to the lesson, module, course, and uploader.
 
   return {
@@ -78,3 +78,4 @@ export async function uploadVideoAction(
     success: true,
   };
 }
+
