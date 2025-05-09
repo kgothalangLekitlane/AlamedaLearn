@@ -1,21 +1,23 @@
+
 'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import type { LucideIcon } from 'lucide-react';
-import { LayoutDashboard, BookCopy, BrainCircuit, CreditCard, Settings } from 'lucide-react';
+import { LayoutDashboard, BookCopy, BrainCircuit, CreditCard, Settings, UserCircle } from 'lucide-react'; // Added UserCircle
+import { useAuth } from '@/contexts/AuthContext'; // New
 
 export interface NavItem {
   href: string;
   title: string;
-  icon: string; // Changed from LucideIcon to string
+  icon: string; 
 }
 
 interface SidebarNavContentProps {
-  navItems: NavItem[];
-  isMobile?: boolean; // To adjust styles if needed for mobile sheet
-  onLinkClick?: () => void; // Optional: Callback for when a link is clicked, e.g. to close mobile sheet
+  baseNavItems: NavItem[];
+  isMobile?: boolean; 
+  onLinkClick?: () => void; 
 }
 
 const iconComponents: { [key: string]: LucideIcon } = {
@@ -24,10 +26,19 @@ const iconComponents: { [key: string]: LucideIcon } = {
   BrainCircuit,
   CreditCard,
   Settings,
+  UserCircle, // Added UserCircle
 };
 
-export default function SidebarNavContent({ navItems, isMobile = false, onLinkClick }: SidebarNavContentProps) {
+export default function SidebarNavContent({ baseNavItems, isMobile = false, onLinkClick }: SidebarNavContentProps) {
   const pathname = usePathname();
+  const { isLoggedIn, user } = useAuth(); // New
+
+  let navItems = [...baseNavItems]; // Start with base items
+
+  if (isLoggedIn && user) {
+    navItems.push({ href: '/profile', title: 'My Profile', icon: 'UserCircle' });
+  }
+  // Potentially add other dynamic items here later
 
   return (
     <nav className={cn('flex flex-col gap-2 px-4 py-2', isMobile ? '' : 'mt-4')}>

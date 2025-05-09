@@ -5,6 +5,7 @@ export interface Lesson {
   contentType: 'video' | 'quiz' | 'resource' | 'text';
   content: string; // URL for video/resource, quiz questions (JSON string), or text content
   durationMinutes?: number; // Optional: Estimated time to complete the lesson
+  uploadedBy?: string; // Tutor's user ID
 }
 
 export interface Module {
@@ -29,11 +30,22 @@ export interface Course {
 }
 
 export interface UserProfile {
+  // This type seems to be for general user profile, distinct from auth user.
+  // Let's keep it for now, but auth will use a new User type.
   id: string;
   name: string;
   email: string;
   subscribed: boolean;
   subscriptionTier?: 'monthly' | 'annual';
+}
+
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  isTutor: boolean;
+  bio?: string;
+  profilePictureUrl?: string;
 }
 
 export interface Deadline {
