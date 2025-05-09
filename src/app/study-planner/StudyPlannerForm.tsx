@@ -1,6 +1,8 @@
+
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
 import { createStudyScheduleAction, type StudyPlannerFormState } from './_actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -26,7 +28,7 @@ function SubmitButton() {
 }
 
 export default function StudyPlannerForm() {
-  const [state, formAction] = useFormState(createStudyScheduleAction, initialState);
+  const [state, formAction] = useActionState(createStudyScheduleAction, initialState);
 
   return (
     <div className="max-w-2xl mx-auto space-y-8">
@@ -131,3 +133,4 @@ export default function StudyPlannerForm() {
     </div>
   );
 }
+

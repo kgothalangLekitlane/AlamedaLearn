@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
+import { useActionState, useEffect, useRef, useState } from 'react';
 import { uploadVideoAction, type VideoUploadFormState } from '@/app/profile/_actions';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,7 +13,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2, CheckCircle, AlertCircle, UploadCloud } from 'lucide-react';
 import { mockCourses } from '@/lib/mockData'; // To get subject and grade lists
-import { useEffect, useRef, useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 
@@ -32,7 +32,7 @@ function SubmitButton() {
 }
 
 export default function VideoUploadForm() {
-  const [state, formAction] = useFormState(uploadVideoAction, initialState);
+  const [state, formAction] = useActionState(uploadVideoAction, initialState);
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
   const [fileName, setFileName] = useState<string | null>(null);
@@ -149,3 +149,4 @@ export default function VideoUploadForm() {
     </Card>
   );
 }
+
