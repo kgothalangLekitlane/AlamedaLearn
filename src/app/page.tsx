@@ -1,7 +1,7 @@
 import { mockCourses, mockDeadlines } from '@/lib/mockData';
 import CourseCard from '@/components/CourseCard';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ListChecks, CalendarClock, BarChart3 } from 'lucide-react';
+import { ListChecks, CalendarClock, BarChart3, BookCopy } from 'lucide-react'; // Added BookCopy
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
@@ -115,3 +115,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+

@@ -13,24 +13,18 @@ export default function LessonDisplay({ lesson }: LessonDisplayProps) {
   const renderContent = () => {
     switch (lesson.contentType) {
       case 'video':
-        const firstImagePart = lesson.content.split('"')[0];
-        const aiHintMatch = lesson.content.match(/data-ai-hint="([^"]+)"/);
-        const aiHint = aiHintMatch ? aiHintMatch[1] : "video lecture";
         return (
-          <div className="aspect-video bg-muted rounded-lg overflow-hidden relative group shadow-inner">
-            <Image 
-              src={firstImagePart} 
-              alt={`Video placeholder for ${lesson.title}`} 
-              layout="fill" 
-              objectFit="cover" 
-              data-ai-hint={aiHint}
-            />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-colors">
-              <PlayCircle className="h-16 w-16 text-white/80 group-hover:text-white transition-colors" />
-            </div>
-            <p className="absolute bottom-2 left-2 text-xs bg-black/50 text-white px-2 py-1 rounded">
-              Video content would play here.
-            </p>
+          <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-inner">
+            <video
+              key={lesson.content} // Add key to re-render if content URL changes
+              src={lesson.content}
+              controls
+              width="100%"
+              className="w-full h-full"
+              aria-label={`Video player for ${lesson.title}`}
+            >
+              Your browser does not support the video tag.
+            </video>
           </div>
         );
       case 'quiz':
@@ -72,8 +66,10 @@ export default function LessonDisplay({ lesson }: LessonDisplayProps) {
               Reading Material
             </div>
             <div className="prose prose-sm max-w-none dark:prose-invert text-foreground">
-              <p>{lesson.content}</p>
-              {/* Add more detailed text rendering if lesson.content is HTML/Markdown */}
+              {/* Naive way to render newlines, consider a markdown parser for rich text */}
+              {lesson.content.split('\\n').map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
           </div>
         );
@@ -96,3 +92,4 @@ export default function LessonDisplay({ lesson }: LessonDisplayProps) {
     </Card>
   );
 }
+

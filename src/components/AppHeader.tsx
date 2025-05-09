@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, BookOpenCheck } from 'lucide-react';
-import type { NavItem } from '@/components/SidebarNav'; // Assuming SidebarNav will export NavItem
-import SidebarNavContent from '@/components/SidebarNavContent'; // Assuming this component will be created
+import type { NavItem } from '@/components/SidebarNavContent'; // Corrected import path
+import SidebarNavContent from '@/components/SidebarNavContent'; 
 
 interface AppHeaderProps {
   navItems: NavItem[];
