@@ -18,7 +18,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // To handle initial auth check
+  const [isLoading, setIsLoading] = useState(true); // To handle  auth check
 
   useEffect(() => {
     // Simulate checking auth status from localStorage or an API
