@@ -1,6 +1,7 @@
 import type { Course, Deadline } from '@/lib/types';
 
 const sampleVideoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
+const samplePdfUrl = '/resources/sample-document.pdf'; // Generic placeholder for PDF resources
 
 export const mockCourses: Course[] = [
   {
@@ -9,7 +10,7 @@ export const mockCourses: Course[] = [
     subject: 'Mathematics',
     grade: 'Grade 10',
     description: 'Comprehensive coverage of Grade 10 Mathematics syllabus including Algebra, Geometry, and Trigonometry.',
-    imageUrl: 'https://picsum.photos/seed/math10/600/400', // AI hint will be added below
+    imageUrl: 'https://picsum.photos/seed/math10/600/400', 
     instructor: 'Mr. Themba Khumalo',
     deadline: '2024-11-15',
     progress: 30,
@@ -23,7 +24,7 @@ export const mockCourses: Course[] = [
           { id: 'math-g10-m1-l1', title: 'Introduction to Algebra', contentType: 'video', content: sampleVideoUrl, durationMinutes: 25 },
           { id: 'math-g10-m1-l2', title: 'Polynomials Quiz', contentType: 'quiz', content: '{"question": "What is (x+2)(x-2)?"}' , durationMinutes: 15},
           { id: 'math-g10-m1-l3', title: 'Factorization Techniques', contentType: 'text', content: 'Detailed notes on various factorization methods.', durationMinutes: 45 },
-          { id: 'math-g10-m1-l4', title: 'Algebra Worksheet', contentType: 'resource', content: '/resources/algebra-worksheet.pdf', durationMinutes: 60 },
+          { id: 'math-g10-m1-l4', title: 'Algebra Worksheet', contentType: 'resource', content: samplePdfUrl, durationMinutes: 60 },
         ],
       },
       {
@@ -44,7 +45,7 @@ export const mockCourses: Course[] = [
     subject: 'Physical Sciences',
     grade: 'Grade 11',
     description: 'Covering mechanics, waves, electricity, and magnetism for Grade 11.',
-    imageUrl: 'https://picsum.photos/seed/physics11/600/400', // AI hint will be added below
+    imageUrl: 'https://picsum.photos/seed/physics11/600/400',
     instructor: 'Ms. Sarah Naidoo',
     deadline: '2024-10-30',
     progress: 55,
@@ -76,7 +77,7 @@ export const mockCourses: Course[] = [
     subject: 'Life Sciences',
     grade: 'Grade 12',
     description: 'In-depth study of genetics, evolution, and human physiology for matric finals.',
-    imageUrl: 'https://picsum.photos/seed/lifesci12/600/400', // AI hint will be added below
+    imageUrl: 'https://picsum.photos/seed/lifesci12/600/400',
     instructor: 'Dr. Bongiwe Dlamini',
     deadline: '2024-09-20',
     progress: 15,
@@ -88,7 +89,7 @@ export const mockCourses: Course[] = [
         progress: 40,
         lessons: [
           { id: 'ls-g12-m1-l1', title: 'DNA Structure Lecture', contentType: 'video', content: sampleVideoUrl, durationMinutes: 45 },
-          { id: 'ls-g12-m1-l2', title: 'Genetics Problems Set', contentType: 'resource', content: '/resources/genetics-problems.pdf', durationMinutes: 60 },
+          { id: 'ls-g12-m1-l2', title: 'Genetics Problems Set', contentType: 'resource', content: samplePdfUrl, durationMinutes: 60 },
         ],
       },
     ],
@@ -99,7 +100,7 @@ export const mockCourses: Course[] = [
     subject: 'English FAL',
     grade: 'Grade 10',
     description: 'Developing language skills: reading, writing, listening, and speaking.',
-    imageUrl: 'https://picsum.photos/seed/english10/600/400', // AI hint will be added below
+    imageUrl: 'https://picsum.photos/seed/english10/600/400',
     instructor: 'Mrs. Jane Smith',
     progress: 70,
     modules: [
@@ -113,12 +114,12 @@ export const mockCourses: Course[] = [
         ],
       },
       {
-        id: 'eng-g10-m2', // Corrected module id
+        id: 'eng-g10-m2',
         title: 'Creative Writing',
         description: 'Techniques for writing essays and narratives.',
         progress: 60,
         lessons: [
-          { id: 'eng-g10-m2-l1', title: 'Essay Writing Guide', contentType: 'resource', content: '/resources/essay-guide.pdf', durationMinutes: 40 },
+          { id: 'eng-g10-m2-l1', title: 'Essay Writing Guide', contentType: 'resource', content: samplePdfUrl, durationMinutes: 40 },
         ],
       },
     ],
@@ -129,7 +130,7 @@ export const mockCourses: Course[] = [
     subject: 'isiZulu HL',
     grade: 'Grade 10',
     description: 'Ukuthuthukisa amakhono olimi: ukufunda, ukubhala, ukulalela nokukhuluma.',
-    imageUrl: 'https://picsum.photos/seed/zulu10/600/400', // AI hint will be added below
+    imageUrl: 'https://picsum.photos/seed/zulu10/600/400', 
     instructor: 'Nkz. Thandi Zulu',
     progress: 25,
     modules: [
@@ -160,7 +161,7 @@ export const mockCourses: Course[] = [
     subject: 'Afrikaans FAL',
     grade: 'Grade 11',
     description: 'Verbeter taalvaardighede: lees, skryf, luister en praat.',
-    imageUrl: 'https://picsum.photos/seed/afrikaans11/600/400', // AI hint will be added below
+    imageUrl: 'https://picsum.photos/seed/afrikaans11/600/400',
     instructor: 'Mnr. Johan van der Merwe',
     progress: 40,
     modules: [
@@ -171,7 +172,71 @@ export const mockCourses: Course[] = [
         progress: 60,
         lessons: [
           { id: 'afr-g11-m1-l1', title: 'Woordsoorte Video Les', contentType: 'video', content: sampleVideoUrl, durationMinutes: 35 },
-          { id: 'afr-g11-m1-l2', title: 'Opstel Skryfwerk (Essay Writing)', contentType: 'resource', content: '/resources/afrikaans-essay-guide.pdf', durationMinutes: 50 },
+          { id: 'afr-g11-m1-l2', title: 'Opstel Skryfwerk (Essay Writing)', contentType: 'resource', content: samplePdfUrl, durationMinutes: 50 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'sepedi-hl-grade10',
+    title: 'Sepedi Home Language Grade 10',
+    subject: 'Sepedi HL',
+    grade: 'Grade 10',
+    description: 'Go godiša bokgoni bja polelo: go bala, go ngwala, go theeletša le go bolela.',
+    imageUrl: 'https://picsum.photos/seed/sepedi10/600/400',
+    instructor: 'Mof. Maria Rakgadi',
+    progress: 10,
+    modules: [
+      {
+        id: 'sepedi-g10-m1',
+        title: 'Direto (Poetry)',
+        description: 'Go sekaseka le go thabela direto tša Sepedi.',
+        progress: 20,
+        lessons: [
+          { id: 'sepedi-g10-m1-l1', title: 'Matseno go Direto', contentType: 'video', content: sampleVideoUrl, durationMinutes: 28 },
+          { id: 'sepedi-g10-m1-l2', title: 'Mehuta ya Direto', contentType: 'text', content: 'Dintlha ka ga mehuta ya direto tša Sepedi.', durationMinutes: 38 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'xitsonga-hl-grade11',
+    title: 'Xitsonga Home Language Grade 11',
+    subject: 'Xitsonga HL',
+    grade: 'Grade 11',
+    description: 'Ku antswisa vutshila bya ririmi: ku hlaya, ku tsala, ku yingisela na ku vulavula.',
+    imageUrl: 'https://picsum.photos/seed/xitsonga11/600/400',
+    instructor: 'Nkul. James Maluleke',
+    progress: 5,
+    modules: [
+      {
+        id: 'xitsonga-g11-m1',
+        title: 'Switlhokovetselo (Poetry)',
+        description: 'Ku kambisisa na ku tiphina hi switlhokovetselo swa Xitsonga.',
+        progress: 15,
+        lessons: [
+          { id: 'xitsonga-g11-m1-l1', title: 'Marungula ya Switlhokovetselo', contentType: 'video', content: sampleVideoUrl, durationMinutes: 32 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'sesotho-hl-grade12',
+    title: 'Sesotho Home Language Grade 12',
+    subject: 'Sesotho HL',
+    grade: 'Grade 12',
+    description: 'Ho ntshetsapele bokgoni ba puo: ho bala, ho ngola, ho mamela le ho bua.',
+    imageUrl: 'https://picsum.photos/seed/sesotho12/600/400',
+    instructor: 'Mme. Lerato Mohapi',
+    progress: 22,
+    modules: [
+      {
+        id: 'sesotho-g12-m1',
+        title: 'Dithothokiso (Poetry)',
+        description: 'Tshekatsheko le kananelo ya dithothokiso tsa Sesotho.',
+        progress: 30,
+        lessons: [
+          { id: 'sesotho-g12-m1-l1', title: 'Selelekela ho Dithothokiso', contentType: 'text', content: 'Dintlha tsa selelekela mabapi le dithothokiso.', durationMinutes: 42 },
         ],
       },
     ],
@@ -200,17 +265,28 @@ export const getLessonById = (courseId: string, moduleId: string, lessonId: stri
 // Add data-ai-hint for course images
 mockCourses.forEach(course => {
   let hint = "education learning"; // Default hint
-  if (course.subject.toLowerCase().includes('math')) {
+  const subjectLower = course.subject.toLowerCase();
+
+  if (subjectLower.includes('math')) {
     hint = "mathematics textbook";
-  } else if (course.subject.toLowerCase().includes('physics') || course.subject.toLowerCase().includes('physical')) {
+  } else if (subjectLower.includes('physics') || subjectLower.includes('physical')) {
     hint = "science experiment";
-  } else if (course.subject.toLowerCase().includes('life sci')) {
+  } else if (subjectLower.includes('life sci')) {
     hint = "biology dna";
-  } else if (course.subject.toLowerCase().includes('english')) {
-    hint = "books library";
-  } else if (course.subject.toLowerCase().includes('zulu') || course.subject.toLowerCase().includes('afrikaans')) {
+  } else if (
+    subjectLower.includes('english') ||
+    subjectLower.includes('zulu') ||
+    subjectLower.includes('afrikaans') ||
+    subjectLower.includes('sepedi') ||
+    subjectLower.includes('xitsonga') ||
+    subjectLower.includes('sesotho') ||
+    subjectLower.includes('language') // Generic catch-all for languages
+  ) {
     hint = "language study";
   }
-  course.imageUrl = `${course.imageUrl.split('"')[0]}" data-ai-hint="${hint}`;
+  // Ensure existing data-ai-hint is not overwritten if present, and correctly format
+  const baseUrl = course.imageUrl.includes('"') ? course.imageUrl.split('"')[0] : course.imageUrl;
+  course.imageUrl = `${baseUrl}" data-ai-hint="${hint}`;
 });
 
+    
