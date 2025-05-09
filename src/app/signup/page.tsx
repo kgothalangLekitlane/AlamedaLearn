@@ -58,7 +58,7 @@ export default function SignupPage() {
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-primary">Create an Account</CardTitle>
-          <CardDescription>Join Alameda Lab and start your learning journey.</CardDescription>
+          <CardDescription>Join AlamedaLearn and start your learning journey.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -176,3 +176,4 @@ export default function SignupPage() {
     </div>
   );
 }
+

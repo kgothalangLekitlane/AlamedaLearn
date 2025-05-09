@@ -47,7 +47,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold text-primary">Welcome Back!</CardTitle>
-          <CardDescription>Login to access your Alameda Lab dashboard.</CardDescription>
+          <CardDescription>Login to access your AlamedaLearn dashboard.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -100,3 +100,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

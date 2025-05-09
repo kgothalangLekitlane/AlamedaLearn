@@ -1,3 +1,4 @@
+
 import { mockCourses, mockDeadlines } from '@/lib/mockData';
 import CourseCard from '@/components/CourseCard';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -19,7 +20,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8">
       <section>
-        <h1 className="text-3xl font-bold tracking-tight mb-2 text-primary">Welcome to Alameda Lab!</h1>
+        <h1 className="text-3xl font-bold tracking-tight mb-2 text-primary">Welcome to AlamedaLearn!</h1>
         <p className="text-muted-foreground text-lg">Your personalized learning journey starts here.</p>
       </section>
 

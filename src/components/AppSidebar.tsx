@@ -28,7 +28,7 @@ export default function AppSidebar({ baseNavItems }: AppSidebarProps) {
       <SidebarHeader className="p-4 border-b">
         <Link href="/" className="flex items-center space-x-2">
           <BookOpenCheck className="h-8 w-8 text-primary" />
-          <span className="text-xl font-bold text-primary">Alameda Lab</span>
+          <span className="text-xl font-bold text-primary">AlamedaLearn</span>
         </Link>
       </SidebarHeader>
       <SidebarContent className="flex-grow">
@@ -43,8 +43,9 @@ export default function AppSidebar({ baseNavItems }: AppSidebarProps) {
             Logout
           </Button>
         )}
-        <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} Alameda Lab</p>
+        <p className="text-xs text-muted-foreground">&copy; {new Date().getFullYear()} AlamedaLearn</p>
       </SidebarFooter>
     </Sidebar>
   );
 }
+

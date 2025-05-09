@@ -22,7 +22,7 @@ export default function AppHeader({ baseNavItems }: AppHeaderProps) {
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <Link href="/" className="flex items-center space-x-2 mr-auto">
           <BookOpenCheck className="h-8 w-8 text-primary" />
-          <span className="text-xl font-bold text-primary">Alameda Lab</span>
+          <span className="text-xl font-bold text-primary">AlamedaLearn</span>
         </Link>
         
         <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ export default function AppHeader({ baseNavItems }: AppHeaderProps) {
               <div className="p-4 border-b">
                  <Link href="/" className="flex items-center space-x-2 mb-4">
                     <BookOpenCheck className="h-7 w-7 text-primary" />
-                    <span className="text-lg font-bold text-primary">Alameda Lab</span>
+                    <span className="text-lg font-bold text-primary">AlamedaLearn</span>
                   </Link>
               </div>
               <SidebarNavContent baseNavItems={baseNavItems} isMobile={true} />
@@ -88,3 +88,4 @@ export default function AppHeader({ baseNavItems }: AppHeaderProps) {
     </header>
   );
 }
+

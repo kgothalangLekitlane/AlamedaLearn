@@ -10,7 +10,7 @@ import { SidebarProvider } from '@/components/ui/sidebar';
 import { AuthProvider } from '@/contexts/AuthContext'; // New
 
 export const metadata: Metadata = {
-  title: 'Alameda Lab',
+  title: 'AlamedaLearn',
   description: 'Your personalized learning platform for the South African curriculum.',
 };
 
@@ -49,3 +49,4 @@ export default function RootLayout({
     </html>
   );
 }
+

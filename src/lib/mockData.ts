@@ -389,14 +389,14 @@ export const mockSurveys: Survey[] = [
   {
     id: 'platform-feedback-survey',
     title: 'Platform Feedback Survey',
-    description: 'Help us improve Alameda Lab by sharing your experience with our platform.',
+    description: 'Help us improve AlamedaLearn by sharing your experience with our platform.',
     isActive: true,
     createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(), // 7 days ago
     updatedAt: new Date().toISOString(),
     questions: [
       {
         id: 'q1-ease-of-use',
-        text: 'How easy is it to navigate and use the Alameda Lab platform?',
+        text: 'How easy is it to navigate and use the AlamedaLearn platform?',
         type: 'rating',
         minRating: 1,
         maxRating: 5,
@@ -427,19 +427,19 @@ export const mockSurveys: Survey[] = [
       },
       {
         id: 'q4-improvements',
-        text: 'What improvements or new features would you like to see on Alameda Lab?',
+        text: 'What improvements or new features would you like to see on AlamedaLearn?',
         type: 'text',
         isRequired: false,
       },
       {
         id: 'q5-recommend',
-        text: 'Would you recommend Alameda Lab to a friend or colleague?',
+        text: 'Would you recommend AlamedaLearn to a friend or colleague?',
         type: 'yes-no',
         isRequired: true,
       },
       {
         id: 'q6-primary-device',
-        text: 'What is your primary device for accessing Alameda Lab?',
+        text: 'What is your primary device for accessing AlamedaLearn?',
         type: 'single-choice',
         isRequired: true,
         options: [
