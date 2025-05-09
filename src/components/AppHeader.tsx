@@ -9,6 +9,7 @@ import type { NavItem } from '@/components/SidebarNavContent';
 import SidebarNavContent from '@/components/SidebarNavContent'; 
 import { useAuth } from '@/contexts/AuthContext'; // New
 import { Skeleton } from '@/components/ui/skeleton'; // For loading state
+import { ThemeToggleButton } from '@/components/ThemeToggleButton'; // New
 
 interface AppHeaderProps {
   baseNavItems: NavItem[]; // Changed from navItems
@@ -26,6 +27,7 @@ export default function AppHeader({ baseNavItems }: AppHeaderProps) {
         </Link>
         
         <div className="flex items-center gap-3">
+          <ThemeToggleButton /> 
           {isLoading ? (
             <>
               <Skeleton className="h-8 w-20" />
