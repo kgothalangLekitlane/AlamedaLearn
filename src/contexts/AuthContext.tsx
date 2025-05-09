@@ -37,9 +37,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = (userData: User) => {
-    setUser(userData);
+    // Ensure all fields of User type are present, even if optional ones are undefined
+    const fullUserData: User = {
+      id: userData.id,
+      name: userData.name,
+      email: userData.email,
+      isTutor: userData.isTutor,
+      bio: userData.bio,
+      profilePictureUrl: userData.profilePictureUrl,
+      country: userData.country,
+      province: userData.province,
+      city: userData.city,
+    };
+    setUser(fullUserData);
     setIsLoggedIn(true);
-    localStorage.setItem('alamedaLabUser', JSON.stringify(userData));
+    localStorage.setItem('alamedaLabUser', JSON.stringify(fullUserData));
   };
 
   const logout = () => {

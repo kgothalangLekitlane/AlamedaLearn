@@ -12,7 +12,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertCircle, Loader2 } from 'lucide-react';
+import { AlertCircle, Loader2, MapPin } from 'lucide-react'; // Added MapPin
 
 export default function SignupPage() {
   const { login } = useAuth();
@@ -21,6 +21,9 @@ export default function SignupPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isTutor, setIsTutor] = useState(false);
+  const [country, setCountry] = useState(''); // New
+  const [province, setProvince] = useState(''); // New
+  const [city, setCity] = useState(''); // New
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -33,10 +36,18 @@ export default function SignupPage() {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Mock signup logic - in a real app, this would hit a backend endpoint
-    console.log('Signing up user:', { name, email, password, isTutor });
+    console.log('Signing up user:', { name, email, password, isTutor, country, province, city });
 
     // For this mock, we'll just log them in directly
-    login({ id: Date.now().toString(), name, email, isTutor });
+    login({ 
+      id: Date.now().toString(), 
+      name, 
+      email, 
+      isTutor,
+      country: country || undefined, // Store as undefined if empty
+      province: province || undefined,
+      city: city || undefined,
+    });
     
     setIsLoading(false);
     router.push(isTutor ? '/profile' : '/'); 
@@ -94,7 +105,49 @@ export default function SignupPage() {
                 disabled={isLoading}
               />
             </div>
-            <div className="flex items-center space-x-2">
+
+            <h3 className="text-md font-semibold text-muted-foreground pt-2 border-t mt-4">Location (Optional)</h3>
+            <div className="space-y-2">
+              <Label htmlFor="country">Country</Label>
+               <div className="relative">
+                <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input 
+                  id="country" 
+                  type="text" 
+                  placeholder="e.g., South Africa" 
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  disabled={isLoading}
+                  className="pl-10"
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="province">Province/State</Label>
+                <Input 
+                  id="province" 
+                  type="text" 
+                  placeholder="e.g., Gauteng" 
+                  value={province}
+                  onChange={(e) => setProvince(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="city">City</Label>
+                <Input 
+                  id="city" 
+                  type="text" 
+                  placeholder="e.g., Johannesburg" 
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-2 pt-4 border-t mt-4">
               <Checkbox 
                 id="isTutor" 
                 checked={isTutor}

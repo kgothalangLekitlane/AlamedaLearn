@@ -46,6 +46,9 @@ export interface User {
   isTutor: boolean;
   bio?: string;
   profilePictureUrl?: string;
+  country?: string; // New
+  province?: string; // New
+  city?: string; // New
 }
 
 export interface Deadline {
