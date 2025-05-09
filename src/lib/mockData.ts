@@ -1,3 +1,4 @@
+
 import type { Course, Deadline } from '@/lib/types';
 
 const sampleVideoUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4';
@@ -240,7 +241,94 @@ export const mockCourses: Course[] = [
         ],
       },
     ],
-  }
+  },
+  {
+    id: 'business-studies-grade10',
+    title: 'Business Studies Grade 10',
+    subject: 'Business Studies',
+    grade: 'Grade 10',
+    description: 'Introduction to business environments, entrepreneurship, and management.',
+    imageUrl: 'https://picsum.photos/seed/business10/600/400',
+    instructor: 'Mr. John Miller',
+    deadline: '2024-11-01',
+    progress: 45,
+    modules: [
+      {
+        id: 'bs-g10-m1',
+        title: 'Business Environments',
+        description: 'Understanding micro, market, and macro environments.',
+        progress: 70,
+        lessons: [
+          { id: 'bs-g10-m1-l1', title: 'Micro Environment Explained', contentType: 'video', content: sampleVideoUrl, durationMinutes: 30 },
+          { id: 'bs-g10-m1-l2', title: 'SWOT Analysis Guide', contentType: 'resource', content: samplePdfUrl, durationMinutes: 40 },
+        ],
+      },
+      {
+        id: 'bs-g10-m2',
+        title: 'Entrepreneurship',
+        description: 'Exploring the qualities and roles of entrepreneurs.',
+        progress: 20,
+        lessons: [
+          { id: 'bs-g10-m2-l1', title: 'What is an Entrepreneur?', contentType: 'text', content: 'Characteristics and importance of entrepreneurs.', durationMinutes: 35 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'economics-grade11',
+    title: 'Economics Grade 11',
+    subject: 'Economics',
+    grade: 'Grade 11',
+    description: 'Study of markets, economic growth, inflation, and fiscal policy.',
+    imageUrl: 'https://picsum.photos/seed/economics11/600/400',
+    instructor: 'Ms. Linda Chen',
+    deadline: '2024-10-15',
+    progress: 60,
+    modules: [
+      {
+        id: 'econ-g11-m1',
+        title: 'Markets and Market Failure',
+        description: 'Understanding demand, supply, and types of market failure.',
+        progress: 80,
+        lessons: [
+          { id: 'econ-g11-m1-l1', title: 'Demand and Supply Curves', contentType: 'video', content: sampleVideoUrl, durationMinutes: 38 },
+          { id: 'econ-g11-m1-l2', title: 'Market Failure Quiz', contentType: 'quiz', content: '{"question": "Define externality."}', durationMinutes: 20 },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'accounting-grade12',
+    title: 'Accounting Grade 12',
+    subject: 'Accounting',
+    grade: 'Grade 12',
+    description: 'Advanced financial accounting, cost accounting, and budgeting for matric.',
+    imageUrl: 'https://picsum.photos/seed/accounting12/600/400',
+    instructor: 'Mr. Peter Jones',
+    deadline: '2024-09-30',
+    progress: 25,
+    modules: [
+      {
+        id: 'acc-g12-m1',
+        title: 'Financial Statements',
+        description: 'Preparation and analysis of company financial statements.',
+        progress: 50,
+        lessons: [
+          { id: 'acc-g12-m1-l1', title: 'Income Statement Analysis', contentType: 'video', content: sampleVideoUrl, durationMinutes: 42 },
+          { id: 'acc-g12-m1-l2', title: 'Balance Sheet Practice', contentType: 'resource', content: samplePdfUrl, durationMinutes: 55 },
+        ],
+      },
+      {
+        id: 'acc-g12-m2',
+        title: 'Cost Accounting',
+        description: 'Understanding cost concepts and break-even analysis.',
+        progress: 10,
+        lessons: [
+          { id: 'acc-g12-m2-l1', title: 'Break-Even Point Calculation', contentType: 'text', content: 'Step-by-step guide to calculating break-even points.', durationMinutes: 30 },
+        ],
+      },
+    ],
+  },
 ];
 
 export const mockDeadlines: Deadline[] = mockCourses
@@ -273,6 +361,12 @@ mockCourses.forEach(course => {
     hint = "science experiment";
   } else if (subjectLower.includes('life sci')) {
     hint = "biology dna";
+  } else if (subjectLower.includes('business')) {
+    hint = "business meeting";
+  } else if (subjectLower.includes('economics')) {
+    hint = "stock market";
+  } else if (subjectLower.includes('accounting')) {
+    hint = "calculator ledger";
   } else if (
     subjectLower.includes('english') ||
     subjectLower.includes('zulu') ||
@@ -288,5 +382,3 @@ mockCourses.forEach(course => {
   const baseUrl = course.imageUrl.includes('"') ? course.imageUrl.split('"')[0] : course.imageUrl;
   course.imageUrl = `${baseUrl}" data-ai-hint="${hint}`;
 });
-
-    
